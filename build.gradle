@@ -1,0 +1,65 @@
+plugins {
+    id 'java'
+    id 'io.qameta.allure' version '2.9.6'
+}
+
+group 'com.mercury.tour'
+version '1.0'
+
+wrapper {
+    distributionType = Wrapper.DistributionType.ALL
+    gradleVersion = '7.2'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    testImplementation 'io.cucumber:cucumber-java:7.2.3'
+    testImplementation 'io.cucumber:cucumber-junit-platform-engine:7.2.3'
+
+    // For tests like cucumber
+    testImplementation(platform('org.junit:junit-bom:5.8.2'))
+    testImplementation('org.junit.jupiter:junit-jupiter')
+    testImplementation('org.junit.platform:junit-platform-suite')
+
+    // Selenium
+    implementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
+    implementation 'io.github.bonigarcia:webdrivermanager:4.2.2'
+
+    // Selenium WebDrivers for Chrome only
+    implementation 'org.seleniumhq.selenium:selenium-chrome-driver:3.141.59'
+
+    // Allure
+    implementation 'io.qameta.allure:allure-java-commons:2.17.3'
+    implementation 'io.qameta.allure:allure-cucumber7-jvm:2.17.3'
+
+    // Working with Excel
+    implementation 'org.apache.poi:poi:4.1.2'
+    implementation 'org.apache.poi:poi-ooxml:4.1.2'
+
+    // Logging
+    implementation 'org.slf4j:slf4j-api:1.7.30'
+    testImplementation 'org.slf4j:slf4j-simple:1.7.30'
+
+
+    // Assertions
+    testImplementation 'org.assertj:assertj-core:3.22.0'
+}
+
+test {
+    useJUnitPlatform()
+    systemProperty('cucumber.junit-platform.naming-strategy', 'long')
+}
+
+allure {
+    adapter {
+        allureJavaVersion = '2.17.3'
+        aspectjVersion = '1.9.9'
+        aspectjWeaver = true
+
+        frameworks { junit5 { enabled = true } }
+    }
+}
