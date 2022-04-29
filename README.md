@@ -1,2 +1,8 @@
-# java-selenium-excel
-my portfolio/ mockup e-Commerce site for practicing automation/ Java/ working with Excel
+java-selenium-working-with-excel
+--- 
+
+## About
+
+- Read Excel File with test data
+- Try to Sign in
+- Write the result to Excel File
